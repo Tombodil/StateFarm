@@ -1,0 +1,118 @@
+<?php
+session_start();
+
+$userinfo = array(
+                'ReviewApplication'=>'Rand29Noyes!5'
+                );
+
+if(isset($_GET['logout'])) {
+    $_SESSION['username'] = '';
+    header('Location:  ' . $_SERVER['PHP_SELF']);
+}
+
+if(isset($_POST['username'])) {
+    if($userinfo[$_POST['username']] == $_POST['password']) {
+        $_SESSION['username'] = $_POST['username'];
+        
+        header( 'Location: /IBMDPKallish/Home.html' );
+        echo "<p>logged in!</p>";
+    }else {
+        //Invalid Login
+        echo "<p>error logging in</p>";
+    }
+}
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    
+<head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+<script type="text/javascript" src="//fast.fonts.net/jsapi/13770a83-5336-453c-b9ed-992544a55a90.js"></script>
+<!--[if IE]>
+<meta http-equiv="Page-Enter" content="blendTrans(duration=0)" />
+<meta http-equiv="Page-Exit" content="blendTrans(duration=0)" />
+<![endif]---->
+    
+<link href="IBMcss.css" rel="stylesheet" type="text/css" />
+    
+<script typ="text/javascript">
+	
+$(document).ready(function(){
+    
+   
+
+        $('.field').bind('keyup', function() { 
+                var nameLength = $("#username").length;
+                var emailLength = $("#password").length;
+
+        if (nameLength > 0 && emailLength > 0)
+        {
+            $('#submitter').addClass("active");
+        }
+
+        } );
+    
+});	
+	
+</script>
+    
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon">
+
+<title>Security Gate</title>
+
+
+<style type="text/css">
+</style>
+<style type="text/css">
+<!--
+.style3 {font-size: 14px}
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+a:active {
+	text-decoration: none;
+}
+-->
+</style>
+    
+<link href="IBMcss.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<!--  End header here, scripts and files loaded in the header can be accessed in the body area of the page.-->
+
+<body class="helnu backgroundBlue">
+<div class="loginPad">
+    <div class="loginTop">Please sign in using the username and password that was emailed to you</div>
+    
+    <div class="form">
+        <form class="login" action="" method="post">
+            <span class="tag">Username </span><input class="field" type="text" name="username" id="username" placeholder="Required"/><br>
+            <div class="clearBoth"> </div>
+            <span class="tag">Password </span><input class="field" type="password" name="password"  id="password" placeholder="Required"/><br>
+            <div class="clearBoth"> </div>
+       <input class="submitter" type="submit" name="submit" value="Login" id="submitter">
+      <div class="clearBoth"> </div>
+        </form>
+        <?php if($_SESSION['username']): ?>
+            <p>You are logged in as <?=$_SESSION['username']?></p>
+            <p><a href="?logout=1">Logout</a></p>
+        <?php endif; ?>
+    </div>
+    
+    <div class="loginBottom">If you cannot login, please contact akallish@us.ibm.com</div>
+    
+</div>
+
+</body>
+</html>

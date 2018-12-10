@@ -1,0 +1,1063 @@
+<?PHP
+
+session_start();
+
+if (!(isset($_SESSION['username']) && $_SESSION['username'] != '')) {  
+    header( 'Location: /Login.html' ); 
+    exit;
+}
+
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    
+<head>
+<script type="text/javascript" src="//code.jquery.com/jquery-latest.js"></script>
+<!-- bxSlider Javascript file -->
+<script src="/slider/jquery.bxslider.min.js"></script>
+<!-- bxSlider CSS file -->
+<link href="/slider/jquery.bxslider.css" rel="stylesheet" />
+<script type="text/javascript" src="//fast.fonts.net/jsapi/13770a83-5336-453c-b9ed-992544a55a90.js"></script>
+<!--[if IE]>
+<meta http-equiv="Page-Enter" content="blendTrans(duration=0)" />
+<meta http-equiv="Page-Exit" content="blendTrans(duration=0)" />
+<![endif]---->
+    
+<link href="IBMcss.css" rel="stylesheet" type="text/css" />
+    
+<!--<script typ="text/javascript">
+	
+$(document).ready(function(){
+    
+$('.projectContent').hide();
+$('.faderPad').hide();    
+        
+    
+        $( "#subNavigation" ).addClass( "lefted" );
+    
+        $( ".nav" ).hover(function() {
+            var g =$(this).attr('linkid');
+            //alert("menu toggled- " + g +" l= #L"+g + " and s=#S" + g);
+            $("#L" + g).toggleClass("darkened");
+            $("#S" + g).toggleClass("darkened");
+             
+            $("#subNavigation").toggleClass( "lefted" ); //
+            
+            return false;
+        });
+    
+});	
+	
+</script>-->
+    
+<script typ="text/javascript">
+	
+$(document).ready(function(){
+    $('.projectContent').hide();
+        $('.faderPad').hide();  
+        $('#subNavigation').addClass("lefted");
+    
+        $( ".hamburger" ).click(function() {
+            //alert('hamburger clicked')
+            $("#subNavigation").toggleClass( "lefted" ); //<!--This works-->
+            $(".hamburger").toggleClass( "hamburgerW" );
+        });
+});	
+	
+</script>
+    
+<script typ="text/javascript">//this one is the expansion of the info
+	
+$(document).ready(function(){
+//$('#menu').hide();
+        var cw = $('.letterSquare').width();
+    
+        $( ".contentBlock" ).addClass( "minimized" );
+    
+        $( ".expander" ).click(function() {
+            //alert("menu toggled.");
+            $(".contentBlock").toggleClass( "minimized" , 800 )
+            
+            return false;
+        });
+    
+        $( "#closer" ).click(function() {
+            //alert("closer clicked.");
+            $( ".projectContent" ).fadeOut('slow');
+        });
+        $('.letterSquare').css({'height':cw+'px'});
+        $("#vTitleT").css('top', $("#cubeT").height() + "px");
+        $("#vTitleB").css('top', $("#cubeB").height() + $("#cubeB").height() + "px");
+        //$(".faderPad").css('top', $(".letterPad").height() + "px");
+        
+        
+});	
+	
+</script>
+
+ 
+    
+<script typ="text/javascript">//This one works the show hide panels
+	
+$(document).ready(function(){
+$('.panel').hide();
+    
+        $( ".showHide" ).click(function() {
+            var p = $(this).attr('p');
+            $('.panel').children('.subShowHide').hide();
+            $('.panel').children('.more').show();
+            
+            
+            
+            $('.panel').not($("#" + p)).slideUp();
+            
+            $(this).children('.showHideArrow').toggleClass("downArrow");/*--this changes the arrow class--*/
+            $('.showHide').not(this).children('.showHideArrow').removeClass("downArrow");
+            
+            
+            
+            $("#" + p).slideToggle( 400 );
+            
+            /*$('html, body').animate({
+                    scrollTop: $("#" + p).offset().top -10
+                }, 800);*/
+            
+            return false;
+        });
+    
+        
+    
+});	
+	
+</script>  
+
+<script typ="text/javascript">//This one works the 'more..' panels
+	
+$(document).ready(function(){
+$('.subShowHide').hide();
+    
+        $( ".more" ).click(function() {
+            var p = $(this).attr('p');
+            
+            $(this).slideToggle( 400 );/*--this removes the more--*/
+            //$(".letterPad").slideToggle();
+            $("#" + p).slideToggle( 400 );
+            
+            return false;
+        });
+    
+        
+    
+});	
+	
+</script> 
+    
+<script typ="text/javascript">//this one is the expansion of the navigation squares
+	
+$(document).ready(function(){
+//$('#menu').hide();
+    
+        $( ".sqLink" ).click(function() {
+            
+            $('.fullPad').slideUp();
+            var p = $(this).attr('p');
+            //alert("menu toggled.");
+            $(".sqLink").removeClass( "sqBigged" , 800 )
+            $(this).toggleClass( "sqBigged" , 800 )
+            $('.faderPad').hide();
+            $('.panel').hide();
+            $("#" + p).show();
+            return false;
+        });
+    
+        $( ".sqLink" ).hover(function() {
+            
+            
+            /*
+            
+            $(".sqLink").not(this).each(function(){
+                if ($('.sqLink').hasClass('sqBigged')){
+                    $('.sqLink').toggleClass( "sqBigged" , 800 )
+                } else {
+                    return false;
+                }
+                //$(this).toggleClass( "sqBigged" , 800 )
+            });
+            return false;*/
+        });
+    
+});	
+	
+</script>
+    
+<script>//this one is the smooth scroll to the section headings
+  $(function() {
+    $("#topLink").click(function() {
+      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        if (target.length) {
+          $('html, body').animate({
+            scrollTop: target.offset().top - $('#menu').height()
+          }, 1000);
+          return false;
+        }
+      }
+    });
+  });
+	</script>
+
+<script type="text/javascript">
+//toggle .nav_panel
+    
+    
+function rnd(n)
+     {
+     return Math.floor(Math.random() * n) + 1;
+     }
+    
+    
+</script>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon">
+
+<title>Impact & Emminence</title>
+
+
+<style type="text/css">
+</style>
+<style type="text/css">
+<!--
+.style3 {font-size: 14px}
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+a:active {
+	text-decoration: none;
+}
+-->
+</style>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-11493953-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    
+<link href="IBM.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<!--  End header here, scripts and files loaded in the header can be accessed in the body area of the page.-->
+
+<body class="helnu">
+
+    <div class="hamburger"></div>
+    
+<div id="menu">
+    
+    <span class="centerpad"> <span class="helnutitle">IBM Design Principal Program</span>&nbsp;<span class="helnutitleSml">Adam Kallish Application</span></span>
+    
+</div><!--navigation-->
+    
+<div id="login">
+    <a onmouseover="this.innerHTML = 'Log Out  '" onmouseout="this.innerHTML = 'Log Out'" alt="Log Out" class="windowClose" href="logout.php">Log Out</a>
+</div>
+    
+<div id="footer">
+    <span class="footLeft">© 2017 Confidential. IBM Systems and/or external clients and/or vendors. All rights reserved.</span>
+    <span class="footRight"><a href="#link1">^Top</a></span>
+</div>
+    
+    
+<!--<div class="navWrap">   This is the wrapping div for the navigation
+    <div id="navigation"> 
+    
+        <ul>
+            <li title="Design Principal Role" class="nav" linkid="1" id="L1"><a href="#link1">1.</a></li>
+            <li title="Citation" class="nav" linkid="2" id="L2"><a href="#link2">2.</a></li>
+            <li title="Mission Statement" class="nav" linkid="3" id="L3"><a href="#link3">3.</a></li>
+            <li title="Recommendations" class="nav" linkid="4" id="L4"><a href="#link4">4.</a></li>
+            <li title="Recommendations" class="nav" linkid="5" id="L5"><a href="#link5">5.</a></li>
+            <li title="Recommendations" class="nav" linkid="6" id="L6"><a href="#link6">6.</a></li>
+            <li title="Recommendations" class="nav" linkid="7" id="L7"><a href="#link7">7.</a></li>
+            
+		</ul>
+   
+    </div><!--navigation-->
+	  
+    <div id="subNavigation" class="nav helnu"> 
+    
+        <ul>
+            <li title="Design Principal Role" class="nav" linkid="9" id="S9"><a href="/IBMDPKallish/Home.html">Home</a></li>
+            <li title="Design Principal Role" class="nav" linkid="1" id="S1"><a href="/IBMDPKallish/Role.html">Design Principal Role</a></li>
+            <li title="Citation" class="nav" linkid="2" id="S2"><a href="/IBMDPKallish/Citation.html">Citation</a></li>
+            <li title="Mission Statement" class="nav " linkid="3" id="S3"><a href="/IBMDPKallish/Mission.html">Mission Statement</a></li>
+            <li title="Client and IBM Impact & Eminence" class="nav current" linkid="4" id="S4"><a href="/IBMDPKallish/IBM.html">Client and IBM Impact &amp; Eminence</a></li>
+            <li title="External Impact & Eminence" class="nav" linkid="5" id="S5"><a href="/IBMDPKallish/External.html">External Impact &amp; Eminence</a></li>
+            <li title="External Impact & Eminence" class="nav" linkid="6" id="S6"><a href="/IBMDPKallish/Portfolio.html">Portfolio</a></li>
+            <li title="References" class="nav " linkid="7" id="S7"><a href="/IBMDPKallish/References.html" >References</a></li>
+            <li title="Consulting" class="nav" linkid="8" id="S8"><a href="/IBMDPKallish/EmployeeData.html">Employee & Nominating Organization Data</a></li>
+            
+		</ul>
+   
+    </div><!--subNavigation
+</div>      <!--This ENDS the wrapping div for the navigation-->
+    
+<div class="content" id="content">
+    
+    
+    
+    
+    
+    <div class="gridPad">
+        <div class="introBlock white">
+           <h3> IBM Impact & Eminence</h3><br>
+        </div>
+        <div class="clearBoth"></div>
+        <div class="slideContainer" id="navSlider">
+        
+            <div class="sqLink helnutitleSml" p="scope">
+                Scope of<br> Assignments                
+            </div>
+            <div class="sqLink helnutitleSml" p="influence">
+                Employee<br>
+                Influence &amp;<br>
+                Leading<br>
+                Transformational<br>
+                Change<br>
+            </div>
+            <div class="sqLink helnutitleSml" p="capital">
+                Reusable<br> Intellectual<br> Capital<br> for IBM 
+            </div>
+            <div class="sqLink helnutitleSml" p="contributions">
+                Professional<br> Contributions<br> to IBM
+            </div>
+            <div class="sqLink helnutitleSml" p="reaching">
+                Reaching<br>
+                Out to<br>
+                IBM’s<br>
+                Design<br>
+                Community<br>
+            </div>
+            <div class="sqLink helnutitleSml" p="recruiting">
+                Recruiting
+            </div>
+            <div class="sqLink helnutitleSml" p="mentorship">
+                Mentorship
+            </div>
+            <div class="sqLink helnutitleSml" p="recognition">
+                Internal IBM Awards, Recognition, and Honors
+            </div>
+        
+        </div><!--slide Container-->
+    </div><!--GridPad Ends here, new div of content can be shown-->
+    
+    <div class="fullPad">
+        <br>
+        <div clas="introBlock">
+        <h3>Summary</h3></div>
+
+        <div class="left helnu">Adam has been with IBM for four years. He has actively sought professional challenges and striven in all his roles to drive design stewardship through leading by example and bringing people together around shared interest areas. He is known within IBM Systems and IBM Design as an active design leader who engages with offering management, design, engineering, sales & marketing and support to understand IBM Design Thinking, how it interlocks with Agile and Offering Management and how these frameworks benefit teams, markets and outcomes for Power, zSystems and Storage. His elevation to Design Principal would be a natural career advancement and in keeping with what he already does. <br><br>
+        </div>
+        <div class="right helnu">
+            <span class="helnuital">“As you may know from working with IBMers, we tend to put in a lot of function into our systems but not think too much about how it can overwhelm the users - especially novices. Adam is driving us to avoid “cognitive overload” for our users and yet make sure we don’t lose the functionality. And given the pressure to deliver, I really appreciate Adam’s standing up and fighting for the design and taking the time to test alternatives on real end users. This attention will not only help prevent the need for a 'do-over' during implementation but will help us make the right first impression in the marketplace”</span><br><br>
+            <Img src="images/IBM/people/hambrick.png"></Img><br><br>
+            <span class="helnutitle"><a href="http://w3.ibm.com/newbp/profile.html?uid=875684897">Geoffrey Hambrick</a></span><br>
+            Distinguished Engineer, CTO Cloud Technical Support<br>
+            IBM Academy of Technology, Master Inventor<br><br>
+        </div><!--RIGHT Section-->
+    </div><!--This wraps the entire letter area so that other letters can be populated-->
+    
+    <div class="faderPad" id="scope">
+       
+        <div class="left helnu">
+        
+            Adam joined the <a href="http://www-03.ibm.com/systems/storage/spectrum/" target="_blank">Tivoli Storage</a> design group in late 2011 as a Senior Information Architect. He was an individual contributor working on Tivoli Operations Center, a new storage administration solution designed with modern front end programming languages and using OneUI language (pre IBM Design Language). <a href="http://www.ibm.com/design/thinking/" target="_blank">IBM Design Thinking</a> was being newly rolled out and he attended one of the early design camps (now called Designweek). <br><br>
+<span class="secPara">After three months he was recognized for leadership skills that demonstrated both mentoring and design culture. He became a UX Team Lead in early 2013. His understanding of how to integrate design from an operational and practice standpoint in large corporations enabled him to organize and put practices in place to keep the growing Storage UX team aligned and focused. Adam also met with customers through user groups and workshops to understand their perspective as well as working environments in order to affect both strategy, vision and execution. He also became a client advocate for Getty Images.<br><br>
+He became involved with the early development of <a href="https://www.ibm.com/marketplace/cloud/us/en-us?cm_mc_uid=07514333821614399974013&cm_mc_sid_50200000=1477844139" target="_blank">Service Engage</a> on <a href="http://www.ibm.com/developerworks/" target="_blank">DeveloperWorks</a> where SaaS solutions would be offered for sale and he worked cross discipline to define a user experience model to connect IBM.com to DeveloperWorks. Leading the effort to secure the Storage area to enter the Hallmark program he led a team that focused on simplifying the way clients access storage server environments through File Restore, a self-serve web-based portal for line-of-business users to easily recover lost or corrupt files without the intervention of a system administrator released in 2014 to the market.<br><br>
+Adam joined <a href="http://www.ibm.com/it-infrastructure/us-en/" target="_blank">IBM Systems</a> Strategy & Transformation team in 2014 to bring his design eminence as IBM Systems Design Lead to interface with Power, zSystems and Storage Design Champions, evangelize the use of IBM Design Thinking practices with product teams and help with active Hallmark Projects by coaching and mentoring offering teams over time to increase their confidence and competence in IBM Design Thinking. <br><br>
+Working with management, Adam collaborated in defining and building a design capability within the IBM Systems Strategy & Development organization in late 2015. This team was provided the opportunity to work on the re-envisioning of SmartCare, a business intelligence tool to help IBMers manage client accounts and monitor support pain. Adam led the definition of the project, design research, facilitated a key workshop with IBMers and sponsor users, defined a UX model.  <br><br>
+Due to our work for SmartCare, the Strategy & Development Design Team became involved with the important IBM Client Support Transformation initiative through Robert McDonald. Starting with envisioning and prototyping a self-help support capability called Guided Support within IBM Support Portal Beta, it leverages IBM Care, Watson Alchemy (natural language processing) and Asset Reuse Manager through short query conversation. Adam is now leading design efforts in taking IBM Design incubator Project Opel recommendations and driving its implementation.
+    Adam has engaged with end-customers and IBM Partners in venues such as Tivoli User Groups and IBM conferences. He has also led many workshops around IBM Design Thinking and Agile for IBM product teams, with sponsor user participation.</span><br><br>
+        
+        
+        
+        <div class="showHide" p="client">Client Activities and Workshops <div class="showHideArrow"></div></div> 
+        <div class="panel" id="client">
+            <span class="helnutitleBold">File Restore Project/Cornell University</span><br> Client interviews, shadowing, and workshop to inform File Restore solution, <span class="helnuital">2013</span><br><br>
+            
+            <span class="helnutitleBold">File Restore Project/Home Depot</span><br> Field observation of network operations center, <span class="helnuital">2013</span><br><br>
+            
+            <span class="helnutitleBold">File Restore Project/Einstein Healthcare</span><br> Field observation of Level 1 & 2 help desk, <span class="helnuital">2013</span><br><br>
+            
+            <span class="helnutitleBold">Tivoli User Group presentations on File Restore/Copenhagen</span><br> Stockholm, <span class="helnuital">2013</span><br><br>
+            
+            <span class="helnutitleBold">Tivoli User Group presentations on File Restore</span><br> <span class="helnuital"> 2013</span><br><br>
+            
+            <span class="helnutitleBold">File Restore Project/Government of Canada (Ottawa), IBM Canada (Montreal)</span><br> Client interviews, shadowing, and workshop to inform File Restore solution, <span class="helnuital">February and April 2014</span><br><br>
+            
+            <span class="helnutitleBold">TSM Operations Center Feedback/Blue Cross/Blue Shield</span><br><span class="helnuital"> February 2015</span><br><br>
+            
+            <span class="helnutitleBold">Tivoli User Group presentations on File Restore/Copenhagen</span><br> Stockholm, <span class="helnuital">2014</span><br><br>
+            
+            <span class="helnutitleBold">Tivoli User Group presentations on TSM</span><br> Chicago, <span class="helnuital">2014</span><br><br>
+            
+            <span class="helnutitleBold">SmartCare Workshop, February 15 – 17, 2015. Austin, TX</span><br> Lead facilitator for a 2.5-day workshop with sponsor users, design and SmartCare engineers to explore how to identify opportunities to improve the product.<br><br>
+            
+            <span class="helnutitleBold">SmartCare</span><br> Field work interviewing System Availability Leaders and Client Availability Leaders using SmartCare, <span class="helnuital">January 2016</span><br><br>
+            
+            <span class="helnutitleBold">Guided Support </span><br> Field work interviewing Level 1 and Level 2 support engineers and access to MVP1, <span class="helnuital">October 2016</span><br><br>
+            
+            <span class="helnutitleBold">Guided Support </span><br> Presentations on MVP1 to the IBM Support Council, <span class="helnuital">November 2016</span><br><br>
+            
+            <span class="helnutitleBold">Guided Support</span><br> Customer access and feedback to MVP1, <span class="helnuital">December 2016</span><br><br>
+            
+        </div><br>
+        </div><!--Left Section-->
+        <div class="right helnu">
+            <span class="helnuital">“Adam is a strong communicator, educator and mentor who balances design practice with a strong desire to change the development culture and to constantly expand his knowledge and skills.  He is passionate about all design dimensions and has done a great job in his new role as IBM Systems Design Lead educating and enabling teams to be successful in Design Thinking. He has been a major change agent in the transformation to Design Thinking and is deserving of promotion to IBM Design Principal.”</span><br><br>
+            <Img src="images/IBM/people/1Rich.png"></Img><br><br>
+            <span class="helnutitle"><a href="http://w3.ibm.com/newbp/profile.html?uid=875684897">Chris Rich</a></span><br>
+            Program Director, User Experience<br>
+            Storage Group<br><br>
+        </div><!--RIGHT Section-->
+    </div><!--This is the first Blue section-->
+    
+    
+    <div class="faderPad" id="influence">
+    
+        <div class="left helnu">
+        Adam has been active in the transformation within IBM Systems to both IBM Design Thinking and Agile. This has been challenging due to the accelerated nature of how external market forces has acted upon IBM Systems. He brought to the company over twenty years of client facing and design thinking experience to IBM working for management consultancies, digital creative companies, academia and design firms. <br><br>  
+        <span class="secPara">
+        After joining IBM Systems, he focused on driving IBM Design Thinking and Agile throughout Storage, Power and zSystems. His current role has given him a unique understanding of the IBM Systems business unit and he has provided a clear and concise product visions based on business unit strategy. His accessible, empathetic and respectful leadership style created the right environment for increased radical collaboration and alignment between management, product managers, design, engineering, sales & marketing and support. Communicating & socializing this vision to solutions teams is a passion of Adam and he oversees the delivery of the vision from design to launch.<br><br>
+        
+        Laying the groundwork for cultural change means creating a culture of design. He has hosted monthly IBM Systems Design Council calls on a wide variety of topics and actively posting content on IBM Systems Design Thinking community as well as in a Slack channel on IBM Design around IBM Systems. He has also had the opportunity to travel to IBM facilities such as Armonk, Astor Place, RTP, Tucson, and Austin to collaborate with divisions and offerings that have critical, design focused / business impactful missions to understand IBM Design Thinking values and practices.<br><br>
+        </span>
+        <div class="showHide" p="brand10">Key attributes of a band 10 position<div class="showHideArrow"></div></div> 
+        <div class="panel" id="brand10">
+            
+            <span class="helnutitleBold">
+                Rigorous use of various design methods</span><br>
+                With an academic background in science, Adam has meshed scientific and design methods (design management and thinking and agile frameworks) to create ways of envisioning discovery grounded by research.<br><br>
+            
+            <span class="helnutitleBold">
+                Radical Collaboration</span><br>
+                Adam focuses on problems that require subject matter experts from several disciplines and uses multiple approaches to create environments of collaboration.<br><br>
+            
+            <span class="helnutitleBold">
+                Thought Leadership</span><br>
+                Guided by mentors and interested in a myriad of topics, Adam is able to articulate concepts and futures that synthesize social, business, design and technological factors.<br><br>
+            
+            <span class="helnutitleBold">
+                Enablement</span><br>
+                As a practitioner of design from a macro and micro perspective, Adam focuses on enabling teams to effectively learn, work and iterate together.<br>
+            
+        </div><br>
+        </div>
+        <div class="right helnu">
+            <span class="helnuital">“Adam has been instrumental in helping the z Systems Design team increase the active hallmark and jumpstart projects by over 300%. One of the significant challenges any business is faced when undertaking such a seismic shift in approach and subsequently culture is the ability to show proof points and celebrate successes on the journey. Adam has continually helped to nurture and support the transformation that our business is going through, he offers his mentorship and experience to any team that needs a 'sanity check' that they are still heading in the right direction and focussed on the right goals. . . Adam continues to assist teams that still are not 100% engaged, he helps them focus on the purity of how Design can help, mediates across teams where necessary and maintains a very open 'I'm here if you need me' approach to all involved. His counsel is valued by the whole z Systems Design team and especially by myself - there have been many times where the best course of action was to 'just call Adam'.”</span><br><br>
+            <Img src="images/IBM/people/jeffries.png"></Img><br><br>
+            <span class="helnutitle"><a href="http://w3.ibm.com/newbp/profile.html?uid=875684897">David Jeffries</a></span><br>
+            Director - CICS Products and API Management on z<br>
+            Executive Design Champion for z Systems<br><br>
+        </div><!--RIGHT Section-->
+    </div><!--Ends the Blue section--> 
+    
+    
+    
+     <div class="faderPad" id="capital">  
+         
+             
+         <div class="left helnu">
+            Patty Clancy, Rob Purdie and Adam with help from Charlie Hill, collaborated on aligning IBM Design Thinking and Agile values and practices to define a lifecycle of how to get product teams from discovery to iteration 0. The outputs of these conversations helped clarify the overlaps and linkages to instill in teams culture, values and practices to accelerate product development and delivery.<br><br>
+            Adam has been active in developing dozens of blog postings, facilitated major workshops and summits, and has presented IBM Design Thinking overviews to many product teams as well as to outside organizations on how infrastructure affects user experience.<br><br>
+        
+        <div class="showHide" p="blogPosts">IBM Systems Design Thinking Blog Posts<div class="showHideArrow"></div></div> 
+        <div class="panel" id="blogPosts">
+            
+            <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Power_has_three_new_hallmarks?lang=en_us" target="_blank">Power has three new hallmarks</a></span><br>
+                Power announced three new hallmarks. IBM Business Units participate in the Hallmark program to strategically invest in their portfolio to either reimagine existing solutions or create new solutions to achieve greater business and market outcomes using IBM Design Thinking and radical collaboration.<br><br>
+            
+            <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Animation_Palette_for_IBM_Design_Language?lang=en_us" target="_blank">IBM Design Language</a></span><br>
+                With the introduction of the IBM Design Language and it continuing maturation, IBM Design has announced an updated module that addresses animation within digital tools. Animation means the use of explorable interfaces through javascript, JQUERY and other coding libraries that allows digital tool elements to become interactive and allow space to be saved within digital workspaces<br><br>
+            
+            <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Innovation_Practices_outside_IBM_Luma_Institute?lang=en_us" target="_blank">Innovation Practices outside IBM : Luma Institute</a></span><br>
+                s IBM continues to bring together Offering Management, IBM Design Thinking and Agile as complementary frameworks that achieve iconic outcomes, there are many consulting companies that have been using variations of all three for decades. The most well known is IDEO, which has a close relationship with IBM. However there are many others at a smaller scale that are doing highly imaginative, creative and innovative work around communications processes, tools and products.<br><br>
+
+            
+            <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Patience_Required_Design_for_the_Enterprise?lang=en_us" target="_blank">Patience Required : Design for the Enterprise</a></span><br>
+                I attended an interesting lecture at Illinois Institute of Technology’s Institute of Design who hosted Sam Yen, Chief Design officer of SAP, a 12 year veteran of the company and took this leadership role in 2014. He came to talk with graduate students about designing within an enterprise company, enterprise software that other large companies use.<br><br> 
+            
+            <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Solving_problems_is_easy_the_difficulty_is_identifying_the_right_problem_to_solve?lang=en_us" target="_blank">Solving problems is easy, the difficulty is identifying the right problem to solve</a></span><br>
+                IBM Design March 2016 DesignLine series was focused on IBM Design Thinking & Client Facing Teams. This was a very informative session which highlighted the maturation of IBM Design Thinking moving from its historical focus on improving IBM software products to now being used to explore and define services for external customers.<br><br>
+            
+            <a class="more helnu" p="bp1">more</a>
+            <div class="subShowHide" id="bp1">
+            
+                <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Thoughts_on_RTP_Design_Week?lang=en_us" target="_blank">Thoughts on RTP Design Week</a></span><br>
+                Kristine Berry and I attended RTP Design Week in Research Triangle Park from June 1 to 5, 2015. Design weeks are events that celebrate the opening of an IBM Design Studio and offers participants to learn more about IBM Design Thinking through three learning tracks : Faciltator Activation, Business Leader/Executive Track, and Product Team Track. The RTP Design Studio is in a temporary space in building 500 and its permanent space will be next to IBM Cloud (both IBM Design and Cloud report to Robert LeBlanc). IBM Systems participated in the Product Team Track with System z IOAz project (IBM Operations Analytics).<br><br>
+            
+            
+                <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Where_Trends_meet_Creativity?lang=en_us" target="_blank">Where Trends meet Creativity</a></span><br>
+                I attended an event at Chicago’s premier incubator, 1871 sponsored by the Connected Intelligence Foundation to hear a lecture from Sheryl Connelly, a futurist at Ford Motor Company. What was interesting about her presentation was the first thing she said was “I am not a car person.” A unique way to talk about the future by a company that is your employer.<br><br>
+            
+                <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Observe_Reflect_Make_Repeat_Austin_Bootcamp_for_Industry_Hires2?lang=en_us" target="_blank">Observe, Reflect, Make - Repeat : Austin Bootcamp for Industry Hires</a></span><br>
+                 recently co-led an IBM Design Bootcamp for Industry Hires with Tim White in Austin, Texas for three days. The purpose of this event is to effectively onboard people with several years experience that either came in through acquisition, are hired as leaders at IBM from another company. The diversity of the 22 participants came from GBS, Analytics, Cloud, Digital Business, NPS and Merge : an IBM company and reflected offering managers, designers and engineers. We also had the assistance of five facilitators : Clay Crenshaw, Oscar Llarena, David Conner, Kara Miekina and Jen Sukis.<br><br>
+            
+                <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/What_is_in_a_number_Plenty?lang=en_us" target="_blank">What is in a number? Plenty.</a></span><br>
+                At September’s IBM Design Town Hall, Charlie Hill, Distinguished Designer provided an update to the Net Promoter Score (NPS) initiative at IBM. The value of NPS is that it is simple, puts user delight at the center of our culture and decision making and can prioritize product team actions to improve IBM offerings. IBM can then share specific product NPS metrics and compare across IBM and competitor products that have NPS.<br><br>
+            
+                <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/The_Power_to_Complete_a_Hallmark?lang=en_us" target="_blank">The Power to Complete a Hallmark</a></span><br>
+                I attended the final playback of Power HA for AIX, a hallmark that focused on a few key pain points : trouble shooting and overall health which at present is not easy to do. Customers don’t touch their systems very much but wanted to deal with a problem node – when it arose through at a glance health; where system resources are in real-time; trouble shooting and log support ; and to be able to update a cluster – with no service interruptions (no small feat!).<br><br>
+                
+                <a class="more helnu" p="bp2">more</a>
+            </div>
+            <div class="subShowHide" id="bp2">
+                <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Making_a_Difference1?lang=en_us" target="_blank">Making a Difference</a></span><br>
+                In the IBM Design Town Hall from Italy today, Nigel Prentice mentioned two important activities that IBM Systems designers have been involved with.<br><br>
+            
+            
+                <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Cognitive_Build_Finalists_Mentors_Share_Keys_to_Their_Success?lang=en_us" target="_blank">Cognitive Build Finalists & Mentors Share Keys to Their Success</a></span><br>
+                IBM Design just posted three videos from the May 2-3 Cognitive Build finals in Austin, TX. What this event highlighted was how many participants that are not designers are using IBM Design Thinking practices around hills, sponsor users and playbacks to gain velocity and value for creating new service models using cognitive principles and technologies.<br><br> 
+            
+            
+                <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Leading_and_Measuring_By_Design?lang=en_us" target="_blank">Leading and Measuring - By Design</a></span><br>
+                Two articles came across my news feed this morning that point directly at IBM Design Thinking and measuring outcomes. This topic has been in the forefront at IBM as the Hallmark program has two years of history to reflect on in terms of trying to achieve iconic outcomes.<br><br>
+            
+                <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/From_One_Click_to_a_Journey_of_Discovery?lang=en_us" target="_blank">From One-Click to a Journey of Discovery</a></span><br>
+                The unicorn of enterprise systems management… the one-click software update. To technically achieve this is exceedingly difficult. Power sees an opportunity to make this idea a reality.<br><br>
+            
+            
+                <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Solving_problems_is_easy_the_difficulty_is_identifying_the_right_problem_to_solve?lang=en_us" target="_blank">Solving problems is easy, the difficulty is identifying the right problem to solve</a></span><br>
+                BM Design March 2016 DesignLine series was focused on IBM Design Thinking & Client Facing Teams. This was a very informative session which highlighted the maturation of IBM Design Thinking moving from its historical focus on improving IBM software products to now being used to explore and define services for external customers.<br><br>
+                <a class="more helnu" p="bp3">more</a>
+            </div><!--bp2-->
+            <div class="subShowHide" id="bp3">
+                
+            <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Designhive_IBM_Town_Hall_at_SXSW?lang=en_us" target="_blank">Designhive : IBM Town Hall at SXSW</a></span><br>
+                Phil Gilbert talked today to all IBMers from the SXSW IBM Designhive space. SXSW is one of the premier music, entertainment and digital events of the year and IBM’s presence has been growing at this important event every year.<br><br>
+           
+            
+            <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/InterConnect_2016_Disrupt_or_be_Disrupted?lang=en_us" target="_blank">InterConnect 2016 : Disrupt or be Disrupted</a></span><br>
+                I just returned from InterConnect 2016 in Las Vegas spread over two venues ; Mandalay Bay and the MGM Grand. I would like to thank Scott Crowder and Patty Clancy for providing the opportunity to attend the event. <br><br>
+            
+            
+            <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/IBM_Systems_welcomes_three_new_Hallmark_Projects?lang=en_us" target="_blank">IBM Systems welcomes three new Hallmark Projects</a></span><br>
+                Power and Storage & Software Defined Infrastructure have applied for and have three strategic investment projects accepted into the IBM Design Hallmark Program.<br><br>
+            
+            
+            <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/IBM_Systems_launches_design_mentoring_program2?lang=en_us" target="_blank">IBM Systems launches design mentoring program</a></span><br>
+                IBM Systems has hired over 30 college new hires that entered our four platforms at the end of November 2015. This was a result of management’s commitment to create the conditions for great user experiences discussed in the first Design Day in Austin. The day after the October Design Day, we held a workshop on mentoring attended by Dave Jeffries, Matt Field, Adam Kallish, BJ Scheid, Natalie Miller, Susan Jasinski, Chris Austen and Thomas Wolfe to discuss mentoring and retention issues.<br><br> 
+            
+            
+            <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/In_a_week_every_one_of_these_configurations_will_be_different?lang=en_us" target="_blank">"In a week, every one of these configurations will be different."</a></span><br>
+                The New York Times / Business Day posted a story on IBM Design named “IBM’s Design-Centered Strategy to Set Free the Squares.” This article is a great overview on the reasons why IBM adopted a design thinking approach, how IBM Design began to engage with the company from an educational and product team perspective and why this time is different.<br><br>
+                
+                <a class="more helnu" p="bp4">more</a>
+            </div><!--bp3-->
+            <div class="subShowHide" id="bp4">
+            
+            <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/IBM_Systems_Design_Day_Advances_in_Iconic_Moments?lang=en_us" target="_blank">IBM Systems Design Day : Advances in Iconic Moments</a></span><br>
+                IBM Systems recently hosted its second Design Day on October 20th in Austin Texas. This event builds on the first Design Day held in May 2015 with Systems Design Champions. Fran O’Sullivan, GM, Systems Strategy and Operations kicked off the day by welcoming the Offering Manager, Design Champion, and Design manager participants. She reinforced the important linkages between Design Thinking and Agile culture and shared all that Systems has achieved in the last six months to accelerate the adoption of IBM Design Thinking.<br><br>
+
+            
+            <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Forrester_Research_Case_Study_IBM_Builds_A_Design_Driven_Culture_At_Scale?lang=en_us" target="_blank">Forrester Research Case Study: IBM Builds A Design-Driven Culture At Scale</a></span><br>
+                Forrester Research has just published Case Study: IBM Builds A Design-Driven Culture At Scale by Allegra Burnette with John Dalton, Kelly Price, and Kara Hartig. This overview highlights the history, rationale, and the evolution of IBM Design Thinking. Overall it is recognition that IBM is making progress and is scaling design to achieve market outcomes. Below is a summary of the content from this report.<br><br>
+
+            
+            <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Three_Fall_IBM_Designcamp_Incubator_Projects_chosen_from_IBM_Systems?lang=en_us" target="_blank">Two Fall IBM Designcamp Incubator Projects chosen from IBM Systems</a></span><br>
+                Forrester Research has just published Case Study: IBM Builds A Design-Driven Culture At Scale by Allegra Burnette with John Dalton, Kelly Price, and Kara Hartig. This overview highlights the history, rationale, and the evolution of IBM Design Thinking. Overall it is recognition that IBM is making progress and is scaling design to achieve market outcomes. Below is a summary of the content from this report.<br><br>
+            
+            <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Agile_IBM_Design_Thinking_Velocity?lang=en_us" target="_blank">Agile + IBM Design Thinking = Velocity</a></span><br>
+                IBM Design fall 2015 design camp for recent graduates is approaching and IBM Systems will play a role in the three month experience to train and create a culture of IBM Design Thinking practices and behavior. <br><br>
+
+            
+            <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Focus_on_the_Customer_not_on_our_Organizational_Structure1?lang=en_us" target="_blank">Focus on the Customer, not on our Organizational Structure</a></span><br>
+                Having been part of several large organizations before joining IBM three years ago, when I would ask these organizations about their customers and if they were focused on their needs. All said unequivocally “yes” but then follow this answer with the way their part of the organization had their needs and plans for markets - usually not clearly connected to the “yes” statement.<br><br>
+
+                <a class="more helnu" p="bp5">more</a>
+            </div><!--bp4-->
+            <div class="subShowHide" id="bp5">
+                
+            <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Remote_Collaboration_Presentation_on_IBM_Designline_Series_for_05_07?lang=en_us" target="_blank">Remote Collaboration Presentation on IBM Designline Series for 05-07</a></span><br>
+                There is a good topic for May 07 DesignLine series by IBM Design called  Remote Collaboration. Becca Danna, SR UX Designer and Researcher, Workforce Science Lead will be presenting (and who will also talk at the IBM Systems Design Council May meeting next week).<br><br>
+            
+            <span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/The_business_case_for_UX_with_very_helpful_links?lang=en_us" target="_blank">The business case for UX with very helpful links</a></span><br>
+                In case people did not see this posting on the IBM Design Professionals community, this is a good posting on the business case for UX with very helpful links.<br><br>
+                
+            </div><!-bp5-->
+
+            
+        </div><br>
+        <div class="clearBoth"></div>
+        <div class="showHide" p="designPosts">IBM Systems Design Council Posts<div class="showHideArrow"></div></div> 
+        <div class="panel" id="designPosts">
+            
+            <span class="helnutitle">
+                November 2016<br></span><span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Helping_IBM_Partners_be_more_successful?lang=en_us" target="_blank">Helping IBM Partners be more successful</a></span><br>
+                For the November IBM Systems Design Council call we had Oscar Llarena, UX lead for PartnerWorld present an overview on this important program. This came about when I met Oscar in Austin at a workshop and thought an understanding of how we engage with IBM partners and how we are helping them be more successful by design.<br><br>
+            
+            <span class="helnutitle">
+                October 2016<br>
+                Kate Blair<br>
+                Offering Management Discipline Lead<br></span><span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Creating_alignment_for_teams_Associate_Offering_Manager_Program?lang=en_us" target="_blank">Creating alignment for teams : Associate Offering Manager Program</a></span><br>
+                For the October IBM Systems Design Council call we had Kate Blair, Offering Management Discipline Lead; AOM Bootcamp Lead present an overview on this new and important program. This came about when I met Kate during a visit to Austin we struck up a conversation about it and my discussions with Lisa Dyer, who I meet with monthly in Chicago.<br><br>
+            
+            <span class="helnutitle">
+                September 2016<br>
+                Mary Jo Mueller<br>
+                IBM Accessibility Program Manager <br></span><span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/This_is_better_than_Google_Power_Sponsor_User_Program_Review?lang=en_us" target="_blank">Whatever you call it, everyone has the right to benefit from digital tools</a></span><br>
+                For the September IBM Systems Design Council call we had Mary Jo Mueller, IBM Accessibility Program Manager present an overview on accessibility with wider concepts on inclusive and universal design. This came about when I met Mary Jo during a visit to Austin and there was a Bootcamp panel on accessibility to entering IBMers.<br><br>
+            
+            <span class="helnutitle">
+                August 2016<br>
+                Eleanor Bartosh and Monocle Team<br></span><span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/A_Patch_for_the_Future_Monocle?lang=en_us" target="_blank">A Patch for the Future : Monocle</a></span><br>
+                For the August IBM Systems Design Council call we had the Power Monocle Hallmark team presenting their accomplishments and challenges. It is focusing on system patch management - which sounds easy but is exceedingly difficult from a technical standpoint and maintenance is a struggle. It is a web based application that allows admins to view and understand the condition of their entire environment and make informed decisions of what and when to patch. Monocle is taking advantage of an existing IBM backend application called TSA that collects, analyzes and reports on a customer’s support and patch level status and sends it back to IBM for analysis.<br><br>
+            
+            <span class="helnutitle">
+                June 2016<br>
+                JD Speer <br>
+                Storage Lead<br></span><span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Testing_Educated_Guesses_The_Kano_Model1?lang=en_us" target="_blank">Testing Educated Guesses : The Kano Model</a></span><br>
+                For the June IBM Systems Design Council call we had James Speer, Design Lead with Storage and Software Defined Environments present how his Flash Hallmark Team is using the Kano Model. IBM Design Thinking is a framework to observe, reflect and make. The Kano model complements this framework by thoughtfully exploring the perceived value of features that may go into a product or service.<br><br>
+            
+                <a class="more helnu" p="dp1">more</a>
+           
+            <div class="subShowHide" id="dp1">
+                
+                <span class="helnutitle">
+                May 2016<br></span><span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Sponsor_Users_and_Design_Research_informing_zSystems_projects?lang=en_us" target="_blank">Sponsor Users and Design Research informing zSystems projects</a></span><br>
+                For the May IBM Systems Design Council call we had zSystems present eight sponsor user programs (five of which are hallmark projects). IBM Design Thinking requires participation from Sponsor Users to either collaborate with IBM teams or to provide input and feedback at key points along product development in order to create more relevant solutions that will be used. Kirsten McDonald is the coordinator of zSystems design research capabilities.<br><br>
+                
+                <span class="helnutitle">
+                April 2016<br></span><span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/How_a_platform_captures_user_insights?lang=en_us" target="_blank">How a platform captures user insights</a>
+                </span><br>
+                For the April IBM Systems Design Council call we had IBM Storage and Software Defined Environments present their different sponsor user programs that are supporting three hallmark projects. Marcie Corral, Design Project Manager coordinated the content for the call. Teresa Swingler & Tiffany Tsai,  from Spectrum Control and Spectrum Scale; Liz Mitchell, Design Lead, Spectrum Protect; JD Speer, Design Lead, FlashSystem and Rebecca Knowe, Design Researcher, Spectrum Protect, shared their experiences.<br><br>
+                
+                <span class="helnutitle">
+                March 2016<br>
+                Carolyn (Cary-Anne) Olsen<br>
+                UX Research Lead, Power<br></span><span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/This_is_better_than_Google_Power_Sponsor_User_Program_Review?lang=en_us" target="_blank">“This is better than Google!” : Power Sponsor User Program Review</a></span><br>
+                For the March IBM Systems Design Council call we had Carolyn (Cary-Anne) Olsen, UX Research lead discuss the sponsor user programs that Power has in place for their three hallmark projects: PowerHA, Digital Experience, and Monocle. IBM Design Thinking requires participation from Sponsor Users to either collaborate with IBM teams or to provide input and feedback at key points along product development in order to create more relevant solutions that will be used.<br><br>
+                
+                <span class="helnutitle">
+                February 2016<br>
+                Adam Kallish, Julianna Murphy, Heyin Oh and Frank Rodriguez <br>
+                StratDev Design Team, IBM Systems<br></span><span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Heuristics_Evaluating_the_Usability_of_a_Digital_System?lang=en_us" target="_blank">Heuristics : Evaluating the Usability of a Digital System</a></span><br>
+                The February 2016 IBM Systems Design Council focused on using heuristics and applying them as an evaluative framework on IBM Systems SmartCare. Adam Kallish, Julianna Murphy, Heyin Oh and Frank Rodriguez from the new Strategy & Development design team presented this topic.<br><br>
+                
+                <span class="helnutitle">
+                January 2016<br>
+                Sponsor User Agreements<br>                
+                Jesyka Palmer and Chris Hammond<br></span><span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/November_Design_Council_DashDB_and_IBM_Design_Language_A_great_match_for_iconic_outcomes?lang=en_us" target="_blank">Enterprise Social Solutions</a></span><br>
+                For the January 2016 IBM Systems Design Council meeting, Chris Hammond and Jesyka Palmer from IBM Design’s Practice Team brought participants up to date on Sponsor User agreements. Adam Cutler leads this team and their focus on the IBM Design Language, IBM Design Thinking, and Design Research as well as the other competencies within IBM Design.<br><br>
+                
+                <a class="more helnu" p="dp2">more</a>
+            </div><!--dp1-->
+            <div class="subShowHide" id="dp2">
+                
+                <span class="helnutitle">
+                November 2015 Design Council <br>
+                Brad Neal, Design Lead<br>
+                Enterprise Social Solutions<br></span><span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/November_Design_Council_DashDB_and_IBM_Design_Language_A_great_match_for_iconic_outcomes?lang=en_us" target="_blank">DashDB and IBM Design Language : A great match for iconic outcomes</a></span><br>
+                For our November Design Council meeting, Brad Neal, IBM Design Lead, Analytics presented DashDB and how his team applied the IBM Design Language to helping users gain greater insight. Brad has been on the team for 18 months with designers in Austin, Toronto and Boeblingen with content designers and multiple developer teams over 100 strong.<br><br>
+                
+                <span class="helnutitle">
+                September 2015<br>
+                Jennifer Heins and Margo Ezekiel <br>
+                Enterprise Social Solutions<br></span><span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/A_Revitalization_of_Email_Verse?lang=en_us" target="_blank">A Revitalization of Email : Verse</a></span><br>
+                Lotus Notes. We know what we don’t like about it, but is there anything that we like about it? How do we improve and at the same time reimagine email? Jennifer Heins and Margo Ezekiel from Enterprise Social Solutions recognized that people feel overwhelmed, find it difficult to focus, and unable to find important content from the noise of email streams. They identified guilt as the primary emotion people felt toward email. <br><br>
+                
+                <span class="helnutitle">
+                August 2015<br>
+                Tim O’Keefe<br> 
+                Design Lead<br></span><span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Loosely_Coupled_and_Tightly_Aligned_Power_HA_Hallmark?lang=en_us" target="_blank">Loosely Coupled and Tightly Aligned : Power HA Hallmark</a></span><br>
+                For our August IBM Systems Design Council call, Tim O’Keefe from Power HA presented the IBM Design Thinking practices that they have used thus far on their hallmark project as well as key learnings. PowerHA is a high availability, business continuity, and disaster recovery solution. Currently the main users of PowerHA use a command line interface (CLI) to interact and control their system. <br><br>
+                
+                <span class="helnutitle">
+                July 2015<br>
+                Melody Dunn<br>
+                Chief Design Officer, IBM Commerce User Experience<br></span><span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Viewing_IBM_Solutions_as_Opportunities_to_Market?lang=en_us" target="_blank">Viewing IBM Solutions as Opportunities to Market</a></span><br>
+                BM Systems Design Council July meeting had Melody Dunn, Chief Design Officer, IBM Commerce User Experience and Workflow discuss her teams progress in integrating IBM Design Thinking and Agile practices together. Melody has over 28 years experience at IBM holding a variety of positions and she is a passionate advocate as marketing practitioner deploying marketing technology, sharing her experiences around continuous delivery.<br><br>
+                
+                <span class="helnutitle">
+                June 2015<br>
+                Damon Deaner<br></span><span class="helnutitleBold">
+                <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/The_Future_of_Front_End_Development?lang=en_us" target="_blank">The Future of Front End Development</a></span><br>
+                For the June IBM Systems Design Council meeting, Damon Deaner from IBM Design Front End Developer Lead was invited to speak about the current and future state of front-end development. Damon has been with IBM for over 15 years and has held several positions such as Customer relationship and satisfaction manager for IBM Accelerated Value Program; Lead of worldwide business development activities for IBM Software Services for Collaboration and Head of the Design Services program supporting IBM Collaboration Software. He now reports to IBM Design.<br><br>
+            
+            
+            </div><!--last DP-->
+        
+    
+        </div><br>
+        <div class="clearBoth"></div>
+        <div class="showHide" p="riskX">For All Things X<div class="showHideArrow"></div></div> 
+        <div class="panel" id="riskX">
+            <span class="helnutitleBold">Draft Article "Risk : Plying rewards in the unknown"</span> <br>
+            Proposed for All Things X "Risk Issue"<br><br>
+            “Our doubts are traitors and make us lose the good we oft might win by fearing to attempt.”<br>
+            William Shakespeare, Measure for Measure<br><br>
+            
+            <img src="images/IBM/Projects/Posters/Risk.jpg" /><br><br>
+            
+            As IBM transforms into a cognitive company supported by IBM Design Thinking with Agile culture, the intersection of belief and demonstrable value looms over everything we create. Our motto may be “Think,” but it is more than just a word silkscreened on our shirts. Coined by Thomas Watson in 1911, his intent was for us to “Think” by widening our thoughts and focusing our minds to transform old ways of doing business into new by bringing fresh positivity and ground-breaking solutions to the world and markets we serve. To truly widen and focus our perspectives and enhance our products and services, we must accept both the power and pain of transformation, as well as the inherent element of risk that it brings.<br><br>
+            For simple problems where incremental change occurs, the future seems easy to understand. Yet, for more complex problems with many interdependencies and unknowns, the act of designing can easily fall apart. When designing the “new”, there is little precedent and many evolving opportunities, unknowns, and constraints. John Chris Jones, the British industrial designer who wrote the book Design Methods in 1970 saw the challenge of design:<br><br>
+            “The act of designing is difficult because designers are given problems to solve by using current information to predict a future state that will not come about unless their predictions are correct.”<br><br>
+            As designers, we aim to radically collaborate with users and specific disciplines to observe and ask the right questions about ourselves, our solutions and our markets (“widening our thoughts”). We reflect and identify hurdles that impede value and deter innovation (“focusing our minds”). We prototype in order to learn, become wiser and more confident through iteration and focus in order to create transformative, iconic outcomes (“transform old ways of doing business”). To create truly relevant solutions, it is critical we approach this process with as little prejudice or personal agenda as possible. We also need to be mindful of how transformations can expose us, and our clients, to risk and how to capitalize on or mitigate risk as needed.<br><br>
+            Simply put, risk is some level of probability of negative exposure which may negate the level of utility we want to achieve. Some negative probabilities have a high chance of happening and some have a low to nonexistent chance. Translated into finance, stocks are riskier than bonds, but generate higher returns over long periods. Response to risk is not universal. People generally tend to be naturally risk adverse since we don’t like to sacrifice what we think we currently have for the possibility of something better, even for possible eventual gain. So people will either respond to risk through fear and retreat, while others will respond with curiosity and acceptance. But both will try to understand and mitigate negative exposure to risk.<br><br>
+            Common types of risks :
+            <ul class="bulleted">
+                <li>bias and stereotypes (people to people or individuals/team to assumptions)</li>
+                <li>people to values (lack of values or shared mental models and culture)</li>
+                <li>people to people (distrust or power plays)</li>
+                <li>people to skills (lack of skills)</li>
+                <li>people to time (lack of urgency or the ability to act in time)</li>
+                <li>where the new meets established processes, procedures and protocols (“we don’t do it that way”)</li>
+                <li>missing market cycles (too early or late)</li>
+            </ul>
+            
+            Despite striking fear into our hearts by its association with failure, shortcoming and potential humiliation, risk is not inherently negative. Over my career as a visual designer, identity systems designer, brand strategist, information architect and UX Lead and UX Manager, risk has always been with me. At first risk made me fearful as I did not know how to respond to it – sort of like a bad horror film where you see shadow and no form. It seemed out of my control to do anything about it (and usually it was). <br><br>
+            As I became more seasoned and began to collaborate with other roles that impacted my work, risk became something to manage. By talking about risk and what it means, it helped determine the level of actual exposure to a work item, a deadline – or even the goal of a project. As I began to lead teams and work on problems where there was little precedent, risk became an old friend, not to fear but to embrace and deal with. In Mandarin the symbol for crisis is a combination of danger (crisis/risk) and opportunity. Opportunity is associated with a potentially risky exploration in which all an individual or company has is a hypothesis and bits of experience projected onto a desired outcome. We need to ask ourselves about these variables:<br>
+            <ul class="bulleted">
+                <li>why is this goal important to me/us?</li>
+                <li>what do we know?</li>
+                <li>what would we like to find out?</li>
+            </ul>
+            Agile culture realizes the positive element of risk and exhorts the creed to “fail early and fast” where we iteratively learn to understand what doesn’t work, isolating and iterating possible solutions until a team achieves the desired result.  IBM’s growth businesses were born in this millennium and a culture of uncertainty, ambiguity and risk has been built in. However, in our decades-old core businesses this transformation is proving far more elusive. To innovate and create meaningful change interrupts the status quo, which is often well-entrenched after years of stability. Shaking things up can be unnerving, but it is necessary for transformation change.<br><br>
+            Because design is associated with exploring without constraint, a fourth variable may also arise: discovering things we did not know we didn’t know. There is a psychology and sociology around exploration. Ideally, designers seek to understand stakeholders’ articulated needs and examine them against what their actual environments and behaviors tells us. The goal is to predict and balance their immediate needs and desires with those of their foreseeable future. “Predict” is the operative word. It can expose a designer or design team to levels of negative risk. Whether viewed as a transformative opportunity or a disaster depends largely on the environment in which designers work. If the culture is open to embracing ambiguity and unknown factors, realizing the value of a new variable is great. If the environment is punitive and risk-adverse, designers will be less likely to act on these opportunities and the potential reward will be lost.<br><br>
+            There are pitfalls lurking for an explorer/designer. One is “magical thinking.” This involves creating causal relationships between actions and events not justified by reason and observation, but by personal bias or preconceived ideas. Bordering on fallacy, these relationships are often imagined to will a theory into reality through brute force. Based on bias and poor observations, they often result in the worst possible outcome — negative results and experiences for our clients. There are also risks difficult to anticipate which can derail even the best-planned journey. This is why we include users as active collaborators to make sure that our emerging model of the future is co-created. In the 100th Anniversary book “Making the World Work Better” Thomas Watson Jr. tried out the concept of “collaboratories” where IBM Research was paired up with IBM Sales to accelerate new products:<br><br>
+            " . . . customers would no longer be satisfied with the choice of either accepting a company's offering or walking away; they wanted to help companies craft their products and services . . . in so called FIrst-of-a-Kind projects that bring inventions more quickly to market." pp-188-189<br><br>
+            How can you and your team recognize, address or take advantage of risk? Over the course of a project, there are many risks opportunities around timelines, resources, milestones and informed assumptions based on direct experience or research provided by offering managers and Design Research. The goal of Design Research as Adam Cutler stated is “formalized curiosity with a purpose.” Research can validate assumptions, increase clarity, uncover new opportunities and lend fresh insights to the goal. Other common risks include the complexity of IBM solutions, the ramp-up period for the team to understand the current state of a solution,  research data overwhelming a team, and certain assumptions about markets, users and behaviors not being properly validated.<br><br>
+            IBM Design Thinking and Agile have specific practices that help designers overcome negative risk exposure. A key practice is to create a social contract within a team so that everyone defines trust, respect, openness, courage and empathy. This helps the team identify and discuss risk in a safe and supportive environment. Keep all work visible to the entire team and make sure they are informed of individual and team outputs. Use an assumptions matrix where they can rate project assumptions as either “certain” or “uncertain” as well as rating them as either “high” or “low” risk for more evidence-based, confidence-weighted decisions to determine how additional research can validate uncertain and high risk assumptions.<br><br>
+            Phil Gilbert has said that as we explore using IBM Design Thinking we should not to worry if an activity or outcome is “throw away” or not. The focus should be on gaining greater and greater clarity over time to differentiate what is known and unknown and to know the difference between the two. During the design journey, it is important to remain optimistic about what can be done with the team and time allocated for the project. <br><br>
+            Risk can be ameliorated by harnessing you and your teams "Think" towards a risk in relation to a goal. So, embrace risk's duality of negative energy and positive outcomes, actively exploring through the team-based approach using IBM Design Thinking practices through critical thinking skills to become more industrious, and achieve a higher degree of mindfulness to increase understanding of a problem. By staying curious and braving the waves of uncertainty, your team will be more open to recognizing new possibilities – and the rewards that opportunity affords you.<br><br>
+            "Only those who will risk going too far can possibly find out how far one can go."<br>
+T. S. Eliot<br>
+Preface to Harry Crosby, Transit of Venus<br>
+             </div><br>
+        <div class="clearBoth"></div>
+        <div class="showHide" p="customP">Custom Presentations<div class="showHideArrow"></div></div> 
+        <div class="panel" id="customP">
+            Adam delivers many presentations to different stakeholders on a wide variety of subjects. He continually aggregates content from IBM Design, W3 and other sources to amplify initiatives. A good example of this effort is the harmonization of Offering Management, IBM Design Thinking and Agile. Many teams do not understand the role of Offering Managers and many are not Agile. Adam created a presentation called “<a href="images/IBM/Projects/PDF/IconicOutcomes5.pdf" target="_blank">Iconic Outcomes</a>” that connects the external and corporate forces that are driving the integration and takes a team through the Offering Management wheel and how IBM Design Thinking and Agile work together to create better outcomes. 
+        </div>
+       </div><!--Left styled Div section-->
+         <div class="right helnu">
+            <span class="helnuital">“Adam helped set up and mentor a dozen Hallmark projects across IBM Systems and many more non Hallmark projects. He understands what it takes to run a successful hallmark like TSM File Restore and provided coaching to PowerHA, Monocle, PR/SM2, zOSMF and others. He worked very closely with the IBM Design team and made contributions to the screening and readiness evaluation approach. Adam also helped set up new design teams for IBM Systems for these projects, as IBM massively grew the size of IBM Systems design teams, and he put in place a mentoring program with 50+ designers and dozens that was instrumental in driving engagement and retention of new designers.”</span><br><br>
+            <Img src="images/IBM/people/clouin.png"></Img><br><br>
+            <span class="helnutitle"><a href="http://w3.ibm.com/newbp/profile.html?uid=875684897">Pierre Henri Clouin</a></span><br>
+            Former Program Director, Head of Strategy, IBM Design<br>
+            Now Chief Strategy Officer, Idean
+<br><br>
+        </div><!--RIGHT Section-->
+     </div><!--This ends another fader CONTENT section-->
+        
+    <div class="faderPad" id="contributions">
+        
+        
+         
+         <div class="left helnu">
+            Adam has continually pivoted within an evolving practice landscape that includes: facilitating workshops, involved how to improve Information and Documentation skills, coaching IBM Systems hallmark projects and creating a strong relationship with IBM Design.<br><br>
+             
+            <div class="showHide" p="workshops">Client Activities and Workshops<div class="showHideArrow"></div></div> 
+        <div class="panel" id="workshops">
+            
+            
+            <span class="helnutitleBold">The Future of Open Badges, January 2017. Austin,  TX</span><br>Lead facilitator to structure and run a large workshop focusing on defining to be scenarios and how to operationalize badging within and outside IBM for employee career growth<br><br>
+            
+            <span class="helnutitleBold">Support and the Seven Experiences, January 2017. Austin,  TX</span><br>Lead facilitator with <a href="http://w3.ibm.com/newbp/profile.html?uid=4G6072897" target="_blank">Kevin Bittner</a> to rearticulate how the seven experiences should integrate support for a seamless support experience<br><br>
+            
+            <span class="helnutitleBold">IBM Design Experienced Hires Bootcamp, September 20-22. 2016 Austin,  TX</span><br>Lead facilitator with <a href="http://w3.ibm.com/newbp/profile.html?uid=4G3102897" target="_blank">Tim White</a> to run a bootcamp for 26 experienced hires working on an applied project for sponsor in Costa Rica<br><br>
+            
+            <span class="helnutitleBold">Cleversafe Hill Working Session, July 6, 2016. Chicago, IL</span><br>Supported a Cleversafe designer’s desire to define a hill for a product release with L2 support product engineers.<br><br>
+            
+            <span class="helnutitleBold">SmartCare Workshop, February 15 – 17, 2016. Austin, TX</span><br>Lead facilitator for a 2.5-day workshop with sponsor users, design and SmartCare engineers to explore how to identify opportunities to improve the product.<br><br>
+            
+            <span class="helnutitleBold">IBM Systems May 2014 & October 2015 Design Day Summits. Austin, TX</span><br>Bringing together Design Champions, lead designers and offering managers to share progress on IBM Design Thinking practices and cultural change. The IBM Systems Design Mentoring program was defined through October summit.<br><br>
+            
+            <span class="helnutitleBold">IBM Client Center Workshop, September 28 – 29, 2015. Armonk, NY</span><br>Lead facilitator for a two day workshop with all IBM Client Centers to use specific IBM Design Thinking practices to identify how these centers could refocus their offerings to both clients and IBM business units<br><br>
+            
+            <span class="helnutitleBold">IBM Power Workshop, July 21 – 22, 2015. Austin, TX</span><br>Lead IBMDT facilitator with Agile facilitator Steve Crago for a two-day workshop with three Power teams to use specific IBM Design Thinking practices to focus product and service improvements<br><br>
+            
+            <span class="helnutitleBold">IBM Storage Workshop, September 22 – 24, 2015. Tucson, AZ</span><br>Lead IBMDT facilitator with Agile facilitator Zenta Ahrens for a two-day workshop with three TSM (now Spectrum) product teams to understand specific IBM Design Thinking practices and using three storage products to improve team focus<br><br>
+            
+            <span class="helnutitleBold">IBM Systems Agile Workshop, July 14 – 15 in RTP. NC</span><br>Lead facilitator with Rob Purdie to run a large, complex, workshop program pattern integrating specific IBM Design Thinking and Agile practices with eight project teams to get to iteration 0<br><br>
+            
+            <span class="helnutitleBold">IBM Systems Transformation Workshop, June 25 – 26. RTP, NC</span><br>Lead facilitator for a two-day workshop with different IBM Systems roles that have been resistant to transformation by using specific IBM Design Thinking practices to show value to cultural change <br><br>
+            
+            <span class="helnutitleBold">IBM Storage Workshop, January 2013. Tucson, AZ</span><br>Lead facilitator for a two-day workshop with TSM storage team (now Spectrum) to transition from Outside-In design to specific IBM Design Thinking practices<br><br>
+            
+            
+            
+        </div><br> 
+             
+            
+         <div class="clearBoth"></div>
+        
+         
+            <div class="showHide" p="pTeams">IBM Design Thinking Overviews for Product Teams<div class="showHideArrow"></div></div> 
+            <div class="panel" id="pTeams">
+                <ol>
+            
+                    <li>PowerVC IBMDT Presentation (Austin)</li>
+                    <li>zMidas IBMDT Presentation (Virtual)</li>
+                    <li>IBMDT presentation (Rochester, MN)</li>
+                    <li>Austin IBMDT presentation in Austin, TX</li>
+                    <li>Linux Secure and Trusted boot IBMDT Overview (Virtual)</li>
+                    <li>Information and Documentation (Virtual)</li>
+                    <li>IBM Storage Israeli Team (Virtual)</li>
+                    <li>IBM Systems Analytics Meeting (Virtual)</li>
+                </ol>
+            
+            
+            
+            </div><br> 
+             
+            <div class="clearBoth"></div>
+            
+            <div class="showHide" p="conCoach">Product Team Consulting and Coaching<div class="showHideArrow"></div></div> 
+            <div class="panel" id="conCoach">
+                <ol>
+            
+                    <li>Power HA (Hallmark Project, Power)</li>
+                    <li>Monocle (Hallmark Project, Power)</li>
+                    <li>IDigital Experience (Hallmark Project, Power)</li>
+                    <li>Flash (Hallmark Project, Storage)</li>
+                    <li>zWave for VM (Hallmark Project, zSystems)</li>
+                    <li>zOSMF (Hallmark Project, zSystems)</li>
+                    <li>ArmoredZ (zSystems)</li>
+                    <li>PowerVC hills review (Power)</li><br><br>
+                    
+                    <span class="helnutitle">IBM Extreme Blue Teams</span><br>
+         
+            Mentored from a design perspective the Watson IoT Killer App for hospital patients and their doctors to monitor their post illness recovery.<br><br></li>
+                </ol>
+            
+            
+            
+            </div><br>
+             
+             
+            <div class="clearBoth"></div>
+            
+            <div class="showHide" p="present">Presentations<div class="showHideArrow"></div></div> 
+            <div class="panel" id="present">               
+            
+                <span class="helnutitleBold">IBM Design Magic People, November 2016</span><br>Adam and Kristine Berry presented the linkages between Offering Management, IBM Design Thinking and Agile to experienced facilitators across IBM.<br><br>
+                
+                <span class="helnutitleBold">IBM Design Bootcamp, July 2016, Austin, TX</span><br>Presenter on How Infrastructure Affects UX<br><br>
+                
+                <span class="helnutitleBold">IBM Edge 2013, Las Vegas, NV</span><br>Changing Software Norms : Applying Agile Development & User Experience for the new TSM Operations Center<br><br>
+            
+            
+            
+            </div><br>
+            
+         </div>
+        
+         <div class="right helnu">
+            <span class="helnuital">“Adam is well respected and highly sought after expert in the area of Design Thinking. As a leader in the IBM Systems Strategy and Transformation area, he has been at the forefront of the growth of IBM Design Thinking across the z System business. His knowledge of the Agile Development process and Design Thinking is critical to the successful deployment of key IBM projects aimed at increasing product acceptance and revenue growth. His knowledge of all aspects of the design process and willingness to share and teach a wide variety of teams makes him an extremely valued resource across IBM.”</span><br><br>
+            <Img src="images/IBM/people/1hans.png"></Img><br><br>
+            <span class="helnutitle"><a href="http://w3.ibm.com/newbp/profile.html?uid=855302897" target="_blank">David Hans</a></span><br>
+            Software Functional Program Manager at IBM<br><br>
+        </div><!--RIGHT Section-->
+         
+    </div><!--This ends another fader CONTENT section-->
+    
+    <div class="faderPad" id="reaching">
+    
+        <div class="left helnu">
+        IBM Design Thinking was just being introduced in 2012 when Adam joined IBM. He reached out to IBM Design leaders to learn more about it and has collaborated with IBM Design over three years on a wide variety of topics and initiatives. He has worked with Pierre Henri Clouin and Daniel Kuehn in making improvements to the Hallmark Program based on his direct experiences in onboarding and coaching several IBM Systems Hallmark teams. Adam interacts with 14 IBM Systems Hallmark teams, meeting with many of them twice a month to review progress and coach the 3-in-a-box leadership on the craft of design and how to address blockers. He also prepared several teams to present to Adam Cutler and his design team on reviewing Hallmark progress through high frame rate reels.<br><br>  
+        <span class="secPara">
+        He also has been involved with the IBM Design Incubator Program to coordinate IBM Systems incubators, as well as a design subject matter expert for Project Thor, focusing on the future of support at IBM. This had led to discussions of aligning the Incubator mini and max programs to scale down to two day bootcamps for experienced hires as well as spin off Incubator max to IBM Systems zSystems to germinate a business unit incubator program with both Tim White and Brad Neal.<br><br>
+        In his current role he has led the monthly IBM Systems Design Council, a cross section of design managers, offering managers and designers that has addressed a variety of topics such as design research, offering management, and specific hallmark team presentations.<br><br>
+        Adam was invited to be part of the Magic People cohort of experienced facilitators led by Jordan Shade due to his eminence in running workshops at IBM. He was also invited to present to IBM Design Bootcamp for College Hires and presented how infrastructure affects UX and also co-lead an IBM Design Bootcamp for Experienced Hires with Tim White.<br><br>
+            In the area of new capabilities, Adam collaborated with <a href="http://w3.ibm.com/newbp/profile.html?uid=5G2398897" target="_blank">Matt Fangmann</a> and <a href="http://w3.ibm.com/newbp/profile.html?uid=4G6072897" target="_blank">Kevin Bittner</a> in creating key messaging on the User Experience practice. Adam has also been involved with Phil Gilbert’s IBM Design Executive yearly meetings in Austin, TX as well as helping facilitate with <a href="http://w3.ibm.com/newbp/profile.html?uid=7A0212897" target="_blank">Kristine Berry</a> two IBM Design Day meetings in Austin with Design Champions to address how to strengthen IBM Design Thinking practices and culture within Power, Storage and zSystems. <br><br>
+        </span>
+         
+        </div>
+        <div class="right helnu">
+            <span class="helnuital">“In an earlier life, I led the Design teams in the former Lotus division. I have come to respect and most importantly value the design skills needed to create and execute outside thinking that will exceed client and business expectations. Adam’s expertise in outside in design thinking is exactly what we need more of at IBM. Along with other leaders in IBM Design I have come to know and respect, e.g. Adam Cutler, Charlie Hill, etc., Adam deserves to join this elite class of Design leaders in IBM Design.”</span><br><br>
+            <Img src="images/IBM/people/mcdonald.png"></Img><br><br>
+            <span class="helnutitle"><a href="http://w3.ibm.com/newbp/profile.html?uid=875684897">Robert J. McDonald, Jr.</a></span><br>
+            Vice President<br>
+            IBM Support Transformation and Training
+<br><br>
+        </div><!--RIGHT Section-->
+    </div><!--Ends the reaching section-->
+    
+    <div class="faderPad" id="recruiting">
+    
+        <div class="left helnu">
+        Adam has influenced the decision of <a href="http://w3.ibm.com/newbp/profile.html?uid=5G2398897" target="_blank">Kara Kotwas</a> to join IBM and worked with Doug Powell to secure her hiring. 
+         
+        </div>
+    </div><!--Ends the reaching section-->
+    
+    <div class="faderPad" id="mentorship">
+    
+        <div class="left helnu">
+        Having held many professional and academic design roles, Adam is committed to helping bring out the best in other people’s and their body of work. He strongly believes that investing time and effort in mentoring employees and clients to enhance understanding, performance and outcomes. In connection with Phil Gilbert’s 2018 plan, Adam has focused on strengthening the future design leaders of IBM Systems by collaborating with IBM Design Talent to create the IBM Systems Design Mentoring program which currently has over 25 band 08/09/10s mentoring over 50 band 06/07 designers. Adam further defined a Rising Star program to recognize designers that have accelerated leadership capabilities.<br><br>  
+        
+        <div class="showHide" p="pMentor">Past Direct Mentoring : Storage Division<div class="showHideArrow"></div></div> 
+        <div class="panel" id="pMentor">
+            
+            <span class="helnutitleBold">
+                <Img src="images/IBM/people/1swingler.png"></Img><br><br>
+                <a href="https://www.linkedin.com/in/teresa-swingler-5847196?authType=NAME_SEARCH&authToken=Tvr5&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A19694836%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1478571839392%2Ctas%3AT" target="_blank">Teresa Swingler</a> </span><br>
+                An experienced IBMer, we worked on leadership and presentation skills<br><br><br>
+            
+            <span class="helnutitleBold">
+                <Img src="images/IBM/people/1murumoto.png"></Img><br><br>
+                <a href="https://www.linkedin.com/in/kristenmuramoto?authType=NAME_SEARCH&authToken=Ju_4&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A129613655%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1478571856646%2Ctas%3AKristen%25" target="_blank">Kristen Muramoto</a> </span><br>
+                Right out of college, Adam mentored Kristen on IBM policies, culture and practices and UX principles<br><br><br>
+            
+            <span class="helnutitleBold">
+                <Img src="images/IBM/people/1holguin.png"></Img><br><br>
+                <a href="https://www.linkedin.com/in/andresholguin?authType=NAME_SEARCH&authToken=tsU1&locale=en_US&srchid=3776211478571876462&srchindex=1&srchtotal=173&trk=vsrp_people_res_name&trkInfo=VSRPsearchId%3A3776211478571876462%2CVSRPtargetId%3A145658753%2CVSRPcm" target="_blank">Andres Holguin</a> </span><br>
+                With a few years experience, Adam mentored Andres on on IBM policies, culture and practices and UX principles as well as iconography and application of the IBM Design Language<br><br>
+            
+            
+        </div><br>
+            
+        <div class="clearBoth"></div>
+        <div class="showHide" p="sMentor">IBM Systems Mentoring<div class="showHideArrow"></div></div> 
+        <div class="panel" id="sMentor">
+            
+            <span class="helnutitleBold">
+                <Img src="images/IBM/people/1gutierrez.png"></Img><br><br>
+                <a href="https://www.linkedin.com/in/gsofia?authType=NAME_SEARCH&authToken=kMlR&locale=en_US&srchid=3776211478571908013&srchindex=1&srchtotal=471&trk=vsrp_people_res_name&trkInfo=VSRPsearchId%3A3776211478571908013%2CVSRPtargetId%3A24133623%2CVSRPcmpt%3Apri" target="_blank">Sofia Gutierrez</a></span> <span class="helnutitle">(zSystems UX) </span><br>
+                Adam is mentoring Sofia on specific topics such as understanding the zSystems portfolio, IBM Systems strategy, how to handle confrontation, and how to use specific IBM Design Thinking practices.<br><br><br>
+            
+            <span class="helnutitleBold">
+                <Img src="images/IBM/people/1mcgrath.png"></Img><br><br>
+                <a href="https://www.linkedin.com/in/meghanlouisemcgrath?authType=NAME_SEARCH&authToken=mMTx&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A376753023%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1478571940882%2Ctas%3AMegh"
+                   target="_blank">Meghan McGrath</a></span> <span class="helnutitle">(zSystems Research) </span><br>
+                Adam is mentoring Meghan on specific topics such as understanding the zSystems portfolio, IBM Systems strategy, how to integrate UX research practices, and how to use specific IBM Design Thinking practices<br><br><br><br>
+            
+            <span class="helnutitleBold">
+                <Img src="images/IBM/people/1morales.png"></Img><br><br>
+                <a href="https://www.linkedin.com/in/moralescecilia?authType=NAME_SEARCH&authToken=xMv5&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A11392003%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1478571962987%2Ctas%3ACeci%20Mor" target="_blank">Ceci Morales</a></span> <span class="helnutitle">(Cleversafe)</span><br>
+                Adam is mentoring Ceci on specific topics such as understanding IBM in general since Clieversafe is being blue-washed. He is also helping her reaise the visibility and importance of design since she is the only designer at Cleversafe<br><br><br>
+            
+            <span class="helnutitleBold">
+                
+            <Img src="images/IBM/people/1murphy.png"></Img>
+            <Img src="images/IBM/people/1oh.png"></Img>
+            <Img src="images/IBM/people/1bostian.png"></Img>
+            <Img src="images/IBM/people/1rodriguez.png"></Img><br><br>StratDev Design Team</span><br>
+            As team lead of three junior designers in Austin, Adam actively mentors <a href="https://www.linkedin.com/in/juliannamurphy1?authType=NAME_SEARCH&authToken=8KfA&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A308998027%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1478571984683%2Ctas%3AJulianna" target="_blank">Julianna Murphy</a>, <a href="https://www.linkedin.com/in/heyinoh?authType=NAME_SEARCH&authToken=O7Fv&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A280943500%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1478572006810%2Ctas%3AHeyin%20OH" target="_blank">Heyin Oh</a>, <a href="https://www.linkedin.com/in/emmabostian?authType=NAME_SEARCH&authToken=l8jR&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A279919646%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1478572023389%2Ctas%3AEmma%20Bosti" target="_blank">Emma Bostian</a> and <a href="https://www.linkedin.com/in/mudshock?authType=NAME_SEARCH&authToken=tI-X&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2CclickedEntityId%3A248743547%2CauthType%3ANAME_SEARCH%2Cidx%3A1-1-1%2CtarId%3A1478572044360%2Ctas%3AFrank%20Rodrigu" target="_blank">Frank Rodriguez</a> (now with mobile) on all aspects of design on daily basis<br> <a href="https://w3-connections.ibm.com/blogs/06d4a476-0e99-401d-87cc-d985042bb300/entry/Blowing_Up_Systems_Our_First_Two_Months_As_IBM_Systems_Designers?lang=en_us" target="_blank">Good blog post on their experience on Adam’s design team</a><br><br>
+            
+            
+        </div><br><br>
+            
+        </div>
+        <div class="right helnu">
+            <span class="helnuital">“Adam lead us through various design thinking activities to figure out what the ideal experience looks like and what we could do in the short term. One major outcome of this session was the creation of the mentor program for new designers in IBM Systems. Adam continued his leadership role leading the myself and other design leaders through the creation of the program. We launched the program matching new designers with design leads. A few months later, he led the effort to collect feedback from the community to determine the success and failures of the program. Learning of the issues, he rebooted the program and we saw a huge spike in engagement. This program was so successful, in part due to Adam’s leadership, IBM Design adopted the program and rolled it out for all new designers in IBM.”</span><br><br>
+            <Img src="images/IBM/people/scheid.png"></Img><br><br>
+            <span class="helnutitle"><a href="http://w3.ibm.com/newbp/profile.html?uid=875684897">Wiliam BJ Scheid</a></span><br>
+            Design Principal<br>
+            zSystems
+<br><br>
+        </div><!--RIGHT Section-->
+    </div><!--Ends the Mentor section--> 
+    
+    <div class="faderPad" id="recognition">
+    
+        <div class="left helnu leftList">
+            <ol>
+                <li>IBM Design Thinking Practitioner Badge</li>
+                <li>IBM Design Thinking Coach Badge</li>
+                <li>IBM Design Thinking Leader Badge</li>
+                <li>Big Data 101 Badge</li>
+                <li>Watson Ambassador Program</li>
+            </ol>
+            
+        
+         </div>
+    </div><!--Ends the Blue section-->
+    
+</div>
+
+</body>
+</html>
+
+<!--
+<div class="showHide" p="brand10">Client Activities and Workshops</div> 
+        <div class="panel" id="brand10">
+            
+            <span class="helnutitle">
+                Rigorous use of various design methods</span><br>
+                With an academic background in science, Adam has meshed scientific and design methods (design management and thinking and agile frameworks) to create ways of envisioning discovery grounded by research.<br><br>
+            
+            <span class="helnutitle">
+                Radical Collaboration</span><br>
+                Adam focuses on problems that require subject matter experts from several disciplines and uses multiple approaches to create environments of collaboration.<br><br>
+            
+            <span class="helnutitle">
+                Thought Leadership</span><br>
+                Guided by mentors and interested in a myriad of topics, Adam is able to articulate concepts and futures that synthesize social, business, design and technological factors.<br><br>
+            
+            <span class="helnutitle">
+                Enablement</span><br>
+                As a practitioner of design from a macro and micro perspective, Adam focuses on enabling teams to effectively learn, work and iterate together.<br>
+            
+        </div><br>
+-->
+
